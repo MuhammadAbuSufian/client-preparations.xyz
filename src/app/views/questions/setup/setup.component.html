@@ -1,0 +1,22 @@
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-category" role="tab" aria-controls="pills-home" aria-selected="true">Category</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-subject" role="tab" aria-controls="pills-profile" aria-selected="false">Subject</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-chapter" role="tab" aria-controls="pills-contact" aria-selected="false">Chapter</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-category" role="tabpanel" aria-labelledby="pills-home-tab">
+    <app-question-setup-category></app-question-setup-category>
+  </div>
+  <div class="tab-pane fade" id="pills-subject" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <app-question-setup-subject></app-question-setup-subject>
+  </div>
+  <div class="tab-pane fade" id="pills-chapter" role="tabpanel" aria-labelledby="pills-contact-tab">
+    <app-question-setup-chapter></app-question-setup-chapter>
+  </div>
+</div>

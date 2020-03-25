@@ -1,0 +1,117 @@
+<br>
+<br>
+<div class="row ">
+  <div class="col-md-8">
+    <div class="row " >
+      <div class="col-md-12 ">
+        <table datatable class="row-border hover">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>1</td>
+            <td>Foo</td>
+            <td>Bar</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Someone</td>
+            <td>Youknow</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Iamout</td>
+            <td>Ofinspiration</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Yoda</td>
+            <td>Skywalker</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Patrick</td>
+            <td>Dupont</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Barack</td>
+            <td>Obama</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>François</td>
+            <td>Holland</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Michel</td>
+            <td>Popo</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Chuck</td>
+            <td>Norris</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Simon</td>
+            <td>Robin</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Louis</td>
+            <td>Lin</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Zelda</td>
+            <td>Link</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" style="min-height: 500px;    border-left: 1px solid #d0e2e0">
+    <div class="card" style="margin-top: 10px">
+      <div class="card-body" style="min-height: 450px">
+        <h6>Add Category</h6>
+        <br>
+        <form #form="ngForm" (ngSubmit)="submit(form)">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="title" class="col-md-3">Title: </label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="title" name="title" [(ngModel)]="category.title"  required #title="ngModel" minlength="3">
+                  <div *ngIf="form.submitted && title.invalid" class="text-danger">
+                    <div *ngIf="title.errors.required">Title is required</div>
+                    <div *ngIf="title.errors.minlength">Title must be at least 3 characters</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="description" class="col-md-3">Note: </label>
+                <div class="col-md-9">
+                  <textarea type="text" class="form-control" id="description" name="description" [(ngModel)]="category.description" #description="ngModel" ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success float-right pull-right" >Submit</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

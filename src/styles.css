@@ -152,3 +152,19 @@
   background-color: #009688 !important;
   border-color: #017267 !important;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #009688;
+  padding: 5px 10px 5px 10px;
+}
+a {
+  color: #4CAF50;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+a:hover {
+  color: #009688;
+  text-decoration: underline;
+}

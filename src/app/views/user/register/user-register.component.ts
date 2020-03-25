@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
-import {UserRequestModel} from '../../request-model/user.request.model';
+import {UserRequestModel} from '../../../request-model/user.request.model';
 
 @Component({
   selector: 'app-user-register',
