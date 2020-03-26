@@ -25,6 +25,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "src/custom-styles.scss",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css"
             ],
@@ -95,6 +96,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "src/custom-styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []

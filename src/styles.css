@@ -168,3 +168,7 @@ a:hover {
   color: #009688;
   text-decoration: underline;
 }
+.dataTables_wrapper .dataTables_processing {
+  top: 150% !important;
+}
+
