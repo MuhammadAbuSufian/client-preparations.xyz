@@ -1,0 +1,67 @@
+<br>
+<br>
+<div class="row ">
+  <div class="col-md-8">
+    <div class="row " >
+      <div class="col-md-12 ">
+        <table datatable [dtOptions]="dtOptions" class="row-border hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Category Name</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="chapters?.length != 0">
+          <tr *ngFor="let chapter of chapters; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ chapter.title }}</td>
+            <td>{{ chapter.description }}</td>
+          </tr>
+          </tbody>
+          <tbody *ngIf="chapters?.length == 0">
+          <tr>
+            <td colspan="3" class="no-data-available">No data!</td>
+          </tr>
+          <tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" style="min-height: 500px;    border-left: 1px solid #d0e2e0">
+    <div class="card" style="">
+      <div class="card-body" style="min-height: 450px">
+        <h6>Add Chapter</h6>
+        <br>
+        <form #form="ngForm" (ngSubmit)="submit(form)">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="title" class="col-md-3">Title: </label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="title" name="title" [(ngModel)]="chapter.title"  required #title="ngModel" minlength="3">
+                  <div *ngIf="form.submitted && title.invalid" class="text-danger">
+                    <div *ngIf="title.errors.required">Title is required</div>
+                    <div *ngIf="title.errors.minlength">Title must be at least 3 characters</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="description" class="col-md-3">Note: </label>
+                <div class="col-md-9">
+                  <textarea type="text" class="form-control" id="description" name="description" [(ngModel)]="chapter.description" #description="ngModel" ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success float-right pull-right" >Submit</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

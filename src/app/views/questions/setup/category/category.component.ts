@@ -3,20 +3,8 @@ import {QuestionSetupRequest} from '../../../../request-model/question-setup.req
 import {ToastrService} from 'ngx-toastr';
 import {SetupService} from '../../../../services/setup.service';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../../../environments/environment';
+import {DataTableDirective} from 'angular-datatables';
 
-class Person {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
-
-class DataTablesResponse {
-  data: any[];
-  draw: number;
-  recordsFiltered: number;
-  recordsTotal: number;
-}
 
 @Component({
   selector: 'app-question-setup-category',
@@ -25,38 +13,17 @@ class DataTablesResponse {
 export class CategoryComponent implements OnInit {
   category: QuestionSetupRequest;
   dtOptions: DataTables.Settings = {};
-  persons: Person[];
-
-  constructor(private toastr: ToastrService, private service: SetupService, private http: HttpClient) {
+  categories: QuestionSetupRequest[];
+  dtElement: DataTableDirective;
+  constructor(private toastr: ToastrService, private service: SetupService) {
     this.category = new QuestionSetupRequest();
   }
   ngOnInit(): void {
-    const that = this;
-
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      serverSide: true,
-      processing: true,
-      ajax: (dataTablesParameters: any, callback) => {
-        that.http
-          .post<DataTablesResponse>(
-            environment.url.serverBase + 'category/data-grid',
-            dataTablesParameters, {}
-          ).subscribe(resp => {
-          that.persons = resp.data;
-
-          callback({
-            recordsTotal: resp.recordsTotal,
-            recordsFiltered: resp.recordsFiltered,
-            data: []
-          });
-        });
-      },
-      columns: [{ data: 'id' }, { data: 'firstName' }, { data: 'lastName' }]
-    };
+    this.setTable();
   }
-
+  setTable() {
+    this.dtOptions = this.service.getCategoryDtOptions((res) => { this.categories = res.data; } );
+  }
   submit(form) {
     if (form.invalid) {
       this.toastr.warning('Please fill all the field correctly', 'Warning');
@@ -65,7 +32,13 @@ export class CategoryComponent implements OnInit {
         this.toastr.success('Submitted', 'Success');
         form.submitted = false;
         form.reset();
+        this.rerender();
       });
     }
+  }
+  rerender(): void  {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.ajax.reload();
+    });
   }
 }
