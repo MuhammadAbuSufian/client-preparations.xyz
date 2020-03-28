@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {QuestionSetupRequest} from '../../../../request-model/question-setup.request.model';
 import {ToastrService} from 'ngx-toastr';
 import {SetupService} from '../../../../services/setup.service';
+import {DataTableDirective} from 'angular-datatables';
 
 @Component({
   selector: 'app-question-setup-chapter',
@@ -11,6 +12,9 @@ export class ChapterComponent implements OnInit{
   chapter: QuestionSetupRequest;
   dtOptions: DataTables.Settings = {};
   chapters: QuestionSetupRequest[];
+  // @ts-ignore
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
   constructor(private toastr: ToastrService, private service: SetupService) {
     this.chapter = new QuestionSetupRequest();
   }
@@ -27,7 +31,14 @@ export class ChapterComponent implements OnInit{
         this.toastr.success('Submitted', 'Success');
         form.submitted = false;
         form.reset();
+        this.rerender();
       });
     }
+  }
+
+  rerender(): void  {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.ajax.reload();
+    });
   }
 }

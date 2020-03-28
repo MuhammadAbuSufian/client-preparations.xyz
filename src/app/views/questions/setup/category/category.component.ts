@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {QuestionSetupRequest} from '../../../../request-model/question-setup.request.model';
 import {ToastrService} from 'ngx-toastr';
 import {SetupService} from '../../../../services/setup.service';
@@ -14,7 +14,11 @@ export class CategoryComponent implements OnInit {
   category: QuestionSetupRequest;
   dtOptions: DataTables.Settings = {};
   categories: QuestionSetupRequest[];
+
+  // @ts-ignore
+  @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
+
   constructor(private toastr: ToastrService, private service: SetupService) {
     this.category = new QuestionSetupRequest();
   }
