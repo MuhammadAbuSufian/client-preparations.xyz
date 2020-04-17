@@ -4,19 +4,20 @@ import {HomeComponent} from './views/home/home.component';
 import {UserComponent} from './views/user/user.component';
 import {AttendanceComponent} from './views/attendance/attendance.component';
 import {UserRegisterComponent} from './views/user/register/user-register.component';
+import {LoginComponent} from './views/auth/login/login.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/question/mcq/BCS',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'login',
     data: {
-      title: 'Home'
+      title: ''
     },
-    component: HomeComponent,
+    component: LoginComponent,
   },
   {
     path: 'user',
@@ -55,7 +56,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/home',
+    redirectTo: '/question/mcq/BCS',
   }
 ]
 

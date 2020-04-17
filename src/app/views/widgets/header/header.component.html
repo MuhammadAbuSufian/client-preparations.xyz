@@ -9,33 +9,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto main-nav " style="margin-left: 15px;">
 
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/user">BCS</a>
+          <li class="nav-item float-right" *ngFor="let cat of categories">
+            <a class="nav-link" [routerLink]="['/question/mcq', cat.title]"  >{{cat.title}}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/user">Primary Job</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/user">SSC </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/user">HSC </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/preparation/sample">Sample</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/user-registration">Registration</a>
-          </li>
-          <li class="nav-item dropdown float-right"  [routerLinkActive]="'active'">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-user-circle" ></i> <span >MCQ Questions </span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" *ngFor="let cat of categories" [routerLink]="['/question/mcq', cat.title]"  ><i class="far fa-user"></i> {{cat.title}}</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown float-right"  [routerLinkActive]="'active'">
+<!--          <li class="nav-item dropdown float-right"  [routerLinkActive]="'active'">-->
+<!--            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--              <i class="far fa-user-circle" ></i> <span >MCQ Questions </span>-->
+<!--            </a>-->
+<!--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--              <a class="dropdown-item" *ngFor="let cat of categories" [routerLink]="['/question/mcq', cat.title]"  ><i class="far fa-user"></i> {{cat.title}}</a>-->
+<!--            </div>-->
+<!--          </li>-->
+          <li class="nav-item dropdown float-right"  [routerLinkActive]="'active'"  *ngIf="authService.admin">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="far fa-user-circle" ></i> <span > Question </span>
             </a>
@@ -47,14 +32,13 @@
           </li>
         </ul>
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="authService.admin">
           <li class="nav-item dropdown float-right"  [routerLinkActive]="'active'">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-user-circle" ></i> <span > Sufian</span>
+              <i class="far fa-user-circle" ></i> <span > Admin</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"  ><i class="far fa-user"></i> Profile</a>
-              <a class="dropdown-item"  style="cursor: pointer" ><i class="fas fa-sign-out-alt"></i> Logout</a>
+              <button class="dropdown-item"  style="cursor: pointer" (click)="logout()"><i class="fas fa-sign-out-alt" ></i> Logout</button>
             </div>
           </li>
 

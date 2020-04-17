@@ -29,6 +29,7 @@ export class AddQuestionComponent implements OnInit {
     if ( form.invalid || this.question.options.length < 1 || !this.validateOptions()) {
       this.toastr.warning('Please fill all the field correctly', 'Warning');
     } else {
+      this.setSubjectAndChapter();
       this.service.saveQuestion(this.question).subscribe(res => {
         this.toastr.success('Submitted', 'Success');
         form.submitted = false;
@@ -80,5 +81,9 @@ export class AddQuestionComponent implements OnInit {
        return false;
      }
      return true;
+  }
+  setSubjectAndChapter() {
+    this.question.subject = this.setupSubjects[this.question.subjectId];
+    this.question.chapter = this.setupChapters[this.question.chapterId];
   }
 }

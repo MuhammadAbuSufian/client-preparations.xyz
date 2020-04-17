@@ -48,7 +48,7 @@
               <label for="subject" class="col-md-4">Subject: </label>
               <div class="col-md-8">
                 <select  class="form-control" id="subject" name="subject" [(ngModel)]="question.subjectId" required #subject="ngModel">
-                  <option *ngFor="let sub of setupSubjects" value="{{sub.id}}">{{sub.title}}</option>
+                  <option *ngFor="let sub of setupSubjects; let i = index" value="{{i}}">{{sub.title}}</option>
                 </select>
                 <div *ngIf="form.submitted && subject.invalid" class="text-danger">
                   <div *ngIf="subject.errors.required">Subject is required</div>
@@ -59,7 +59,7 @@
               <label for="chapter" class="col-md-4">Chapter: </label>
               <div class="col-md-8">
                 <select class="form-control" id="chapter" name="chapter" [(ngModel)]="question.chapterId" required #chapter="ngModel">
-                  <option *ngFor="let chp of setupChapters" value="{{chp.id}}">{{chp.title}}</option>
+                  <option *ngFor="let chp of setupChapters; let i = index" value="{{i}}">{{chp.title}}</option>
                 </select>
                 <div *ngIf="form.submitted && chapter.invalid" class="text-danger">
                   <div *ngIf="chapter.errors.required">Chapter is required</div>

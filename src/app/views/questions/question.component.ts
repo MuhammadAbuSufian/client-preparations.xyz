@@ -17,8 +17,16 @@ export class QuestionComponent implements OnInit {
   questionService: QuestionService;
   page: number;
   category: string;
-  constructor(setupService: SetupService, questionService: QuestionService, private  route: ActivatedRoute,) {
+  chapter: string;
+  subject: string;
+  subjectName: string;
+  chapterName: string;
+  constructor(setupService: SetupService, questionService: QuestionService, private  route: ActivatedRoute) {
     this.page = 0;
+    this.chapter = 'default';
+    this.subject = 'default';
+    this.chapterName = 'All';
+    this.subjectName = 'All';
     this.setupService = setupService;
     this.questionService = questionService;
   }
@@ -27,20 +35,24 @@ export class QuestionComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.category = params['category'];
+        this.getQuestions(this.category, this.subject);
       }
     );
     this.getSujects(this.category);
-    this.getQuestions();
+    this.getChapters();
   }
 
   getSujects(category: string): void {
-    this.setupService.getSubjectsSetupByCategory(category).subscribe( (res: QuestionSetupViewModel[] ) => {
+    this.setupService.getSubjectsSetup().subscribe( (res: QuestionSetupViewModel[] ) => {
       this.subjects = res;
     });
   }
 
-  getQuestions(): void {
-    this.questionService.getQuestions(this.page).subscribe( (res: QuestionViewModel[]) => {
+  getQuestions(currentCategory, subject): void {
+    this.page = 0;
+    this.subject = subject;
+    this.setHeader();
+    this.questionService.getQuestions(this.page, currentCategory, this.chapter, subject).subscribe( (res: QuestionViewModel[]) => {
       this.questions = res;
       if ( res.length === 30) {
         this.page++;
@@ -48,9 +60,15 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  getChapters() {
+    this.setupService.getCaptersSetup().subscribe( (res: any) => {
+      this.chapters = res;
+    });
+  }
+
   loadMore(): void {
     if ( this.page !== 0 ) {
-      this.questionService.getQuestions(this.page).subscribe( (res: QuestionViewModel[]) => {
+      this.questionService.getQuestions(this.page, this.category, this.chapter, this.subject).subscribe( (res: QuestionViewModel[]) => {
         res.forEach( (item) => {
           this.questions.push(item);
         });
@@ -61,5 +79,31 @@ export class QuestionComponent implements OnInit {
         }
       });
     }
+  }
+
+  setHeader() {
+    if (this.subject === 'default') {
+      this.subjectName = 'All';
+    } else {
+      this.subjects.forEach( item => {
+        if (item.id === this.subject) {
+          this.subjectName = item.title;
+        }
+      });
+    }
+    if (this.chapter === 'default') {
+      this.chapterName = 'All';
+    } else {
+      this.chapters.forEach( item => {
+        if (item.id === this.chapter) {
+          this.chapterName = item.title;
+        }
+      });
+    }
+  }
+
+  changeSubject(category, subject) {
+    this.chapter = 'default';
+    this.getQuestions(category, subject);
   }
 }

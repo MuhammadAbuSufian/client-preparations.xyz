@@ -18,6 +18,7 @@ import {CommonModule} from '@angular/common';
 import {UserListComponent} from './views/user/user-list/user-list.component';
 import {AddUserComponent} from './views/user/add-user/add-user.component';
 import {DataTablesModule} from 'angular-datatables';
+import {LoginComponent} from './views/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {DataTablesModule} from 'angular-datatables';
     FooterComponent,
     HeaderComponent,
     UserListComponent,
-    AddUserComponent
+    AddUserComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

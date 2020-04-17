@@ -34,26 +34,26 @@ export class PreparationComponent implements OnInit{
   }
 
   getQuestions(): void {
-    this.questionService.getQuestions(this.page).subscribe( (res: QuestionViewModel[]) => {
-      this.questions = res;
-      if ( res.length === 30) {
-        this.page++;
-      }
-    });
+    // this.questionService.getQuestions(this.page).subscribe( (res: QuestionViewModel[]) => {
+    //   this.questions = res;
+    //   if ( res.length === 30) {
+    //     this.page++;
+    //   }
+    // });
   }
 
   loadMore(): void {
-    if ( this.page !== 0 ) {
-      this.questionService.getQuestions(this.page).subscribe( (res: QuestionViewModel[]) => {
-        res.forEach( (item) => {
-          this.questions.push(item);
-        });
-        if ( res.length === 30) {
-          this.page++;
-        } else {
-          this.page = 0;
-        }
-      });
-    }
+    // if ( this.page !== 0 ) {
+    //   this.questionService.getQuestions(this.page).subscribe( (res: QuestionViewModel[]) => {
+    //     res.forEach( (item) => {
+    //       this.questions.push(item);
+    //     });
+    //     if ( res.length === 30) {
+    //       this.page++;
+    //     } else {
+    //       this.page = 0;
+    //     }
+    //   });
+    // }
   }
 }

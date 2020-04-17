@@ -12,4 +12,6 @@ export class QuestionRequestModel {
   categoryId: string;
   subjectId: string;
   chapterId: string;
+  chapter: any;
+  subject: any;
 }

@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
   template: `
       <div class="footer" style="background: #006c7f!important; color: white">
           <div class="container">
-              <p style="margin: 5px;">@CompanyName All Copy Rights Received 2019</p>
+              <p style="margin: 5px;">@PREPARATIONS.XYZ All Copy Rights Received 2020</p>
           </div>
       </div>
   `

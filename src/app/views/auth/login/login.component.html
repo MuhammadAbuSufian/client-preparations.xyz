@@ -1,0 +1,24 @@
+
+<div class="row" style="margin: 150px 0;">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <h2 class="green-border-bottom">ODI-HR</h2>
+    <br />
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="far fa-user"></i></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Username" [(ngModel)]="user.username" >
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+      </div>
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password"  (keyup.enter)="login()">
+    </div>
+    <button class="btn btn-outline-secondary btn-block btn-sm" (click)="login()">Login</button>
+
+  </div>
+  <div class="col-sm-4"></div>
+</div>
