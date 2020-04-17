@@ -47,6 +47,13 @@ export const routes: Routes = [
     loadChildren: () => import('./views/questions/question.module').then(m => m.QuestionModule)
   },
   {
+    path: 'preparation',
+    data: {
+      title: 'Preparation'
+    },
+    loadChildren: () => import('./views/preparation/preparation.module').then(m => m.PreparationModule)
+  },
+  {
     path: '**',
     redirectTo: '/home',
   }

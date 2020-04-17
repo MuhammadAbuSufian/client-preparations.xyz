@@ -9,7 +9,7 @@ import {DataTableViewModel} from '../ViewModels/data-table.view.model';
   providedIn: 'root'
 })
 export class SetupService {
-
+  busy: any;
   constructor(private httpClient: HttpClient) { }
 
   saveCategory(data: QuestionSetupRequest) {
@@ -101,6 +101,19 @@ export class SetupService {
       columns: [{ data: 'id' }, { data: 'title' }, { data: 'description' }]
     };
     return options;
+  }
+
+  getCategoriesSetup() {
+    return this.httpClient.get(environment.url.serverBase + 'category/data-setup' );
+  }
+  getCaptersSetup() {
+    return this.httpClient.get(environment.url.serverBase + 'chapter/data-setup' );
+  }
+  getSubjectsSetup() {
+    return this.httpClient.get(environment.url.serverBase + 'subject/data-setup' );
+  }
+  getSubjectsSetupByCategory(category: string) {
+    return this.httpClient.get(environment.url.serverBase + 'subject/' + category );
   }
 
 }

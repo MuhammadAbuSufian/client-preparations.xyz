@@ -11,7 +11,7 @@ import {ChapterComponent} from './setup/chapter/chapter.component';
 import {CategoryComponent} from './setup/category/category.component';
 import {DataTablesModule} from 'angular-datatables';
 import {SetupService} from '../../services/setup.service';
-import {AgGridModule} from 'ag-grid-angular';
+import {QuestionComponent} from './question.component';
 
 @NgModule({
   imports: [
@@ -22,6 +22,7 @@ import {AgGridModule} from 'ag-grid-angular';
   ],
 
   declarations: [
+    QuestionComponent,
     AddQuestionComponent,
     QuestionsComponent,
     SetupComponent,

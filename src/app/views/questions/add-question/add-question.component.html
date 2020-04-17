@@ -5,57 +5,64 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group row">
-              <label for="username" class="col-md-4">Question: </label>
+              <label for="title" class="col-md-4">Question Title: </label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="modelone"  required #username="ngModel" minlength="6">
-                <div *ngIf="form.submitted && username.invalid" class="text-danger">
-                  <div *ngIf="username.errors.required">Username is required</div>
-                  <div *ngIf="username.errors.minlength">Username must be at least 6 characters</div>
+                <input type="text" class="form-control" id="title" name="title" [(ngModel)]="question.title"  required #title="ngModel" minlength="6">
+                <div *ngIf="form.submitted && title.invalid" class="text-danger">
+                  <div *ngIf="title.errors.required">Title is required</div>
+                  <div *ngIf="title.errors.minlength">Title must be at least 6 characters</div>
                 </div>
               </div>
             </div>
-            <div class="form-group row">
-              <label for="username" class="col-md-3">Option: </label>
-              <label for="username" class="col-md-1">
-                <input type="checkbox">
-              </label>
+            <div class="form-group row" *ngFor="let option of question.options; let i = index">
+              <label  class="col-md-2">{{questionOptionEnum[i]}}) </label>
+              <div  class="col-md-1">
+                <input type="checkbox"  name="answer{{i}}" [(ngModel)]="option.answer" >
+              </div>
+              <div class="col-md-1" *ngIf="question.options.length == (i+1)">
+                <a class="btn btn-success btn-sm cat-dlt-btn" (click)="addOption()">+</a>
+              </div>
+              <div class="col-md-1" *ngIf="question.options.length != (i+1)"></div>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="amader" name="username" [(ngModel)]="modelone"  required #username="ngModel" minlength="6">
-                <div *ngIf="form.submitted && username.invalid" class="text-danger">
-                  <div *ngIf="username.errors.required">Username is required</div>
-                  <div *ngIf="username.errors.minlength">Username must be at least 6 characters</div>
-                </div>
+                <input type="text" class="form-control" name="option{{i}}" [(ngModel)]="option.title" >
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group row">
-              <label for="username" class="col-md-4">Category: </label>
+              <label for="category" class="col-md-4">Category: </label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="password" name="password" [(ngModel)]="modeltwo" required #password="ngModel" minlength="6">
-                <div *ngIf="form.submitted && password.invalid" class="text-danger">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                <select class="form-control" id="category" name="category"
+                        [(ngModel)]="question.categoryId" required #category="ngModel"  (change)="addCategory(category)">
+                  <option *ngFor="let cat of setupCategories" value="{{cat.id}}">{{cat.title}}</option>
+                </select>
+                <div *ngIf="form.submitted && category.invalid" class="text-danger">
+                  <div *ngIf="category.errors.required">Category is required</div>
+                </div>
+                <span class="badge badge-info selected-category" *ngFor="let item of question.categories; let i = index">
+                  <h6>{{item.title}} <span class="btn btn-warning cat-dlt-btn" (click)="delCategory(i)">X</span></h6>
+                </span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="subject" class="col-md-4">Subject: </label>
+              <div class="col-md-8">
+                <select  class="form-control" id="subject" name="subject" [(ngModel)]="question.subjectId" required #subject="ngModel">
+                  <option *ngFor="let sub of setupSubjects" value="{{sub.id}}">{{sub.title}}</option>
+                </select>
+                <div *ngIf="form.submitted && subject.invalid" class="text-danger">
+                  <div *ngIf="subject.errors.required">Subject is required</div>
                 </div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="username" class="col-md-4">Subject: </label>
+              <label for="chapter" class="col-md-4">Chapter: </label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="passwords" name="password" [(ngModel)]="modeltwo" required #password="ngModel" minlength="6">
-                <div *ngIf="form.submitted && password.invalid" class="text-danger">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="username" class="col-md-4">Chapter: </label>
-              <div class="col-md-8">
-                <input type="text" class="form-control" id="passwordss" name="password" [(ngModel)]="modeltwo" required #password="ngModel" minlength="6">
-                <div *ngIf="form.submitted && password.invalid" class="text-danger">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                <select class="form-control" id="chapter" name="chapter" [(ngModel)]="question.chapterId" required #chapter="ngModel">
+                  <option *ngFor="let chp of setupChapters" value="{{chp.id}}">{{chp.title}}</option>
+                </select>
+                <div *ngIf="form.submitted && chapter.invalid" class="text-danger">
+                  <div *ngIf="chapter.errors.required">Chapter is required</div>
                 </div>
               </div>
             </div>
