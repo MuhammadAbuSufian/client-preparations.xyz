@@ -15,7 +15,11 @@ export class HeaderComponent implements OnInit {
   constructor(private setupService: SetupService, private router: Router,
               private toastr: ToastrService, public authService: AuthService) {
     this.categories = [];
-
+    const user = localStorage.getItem('userToken');
+    console.log(user);
+    if (user) {
+      this.authService.admin = true;
+    }
   }
 
   ngOnInit(): void {

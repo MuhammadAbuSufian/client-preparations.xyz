@@ -53,16 +53,12 @@ export const routes: Routes = [
       title: 'Preparation'
     },
     loadChildren: () => import('./views/preparation/preparation.module').then(m => m.PreparationModule)
-  },
-  {
-    path: '**',
-    redirectTo: '/question/mcq/BCS',
   }
 ]
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRouteModule {}
