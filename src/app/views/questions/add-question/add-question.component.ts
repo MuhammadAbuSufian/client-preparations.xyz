@@ -52,7 +52,7 @@ export class AddQuestionComponent implements OnInit {
   }
   addCategory(category) {
     this.setupCategories.forEach( item => {
-      if ( item.id === category.value) {
+      if ( item._id === category.value) {
         this.question.categories.push(item);
       }
     });

@@ -34,7 +34,7 @@
               <div class="col-md-8">
                 <select class="form-control" id="category" name="category"
                         [(ngModel)]="question.categoryId" required #category="ngModel"  (change)="addCategory(category)">
-                  <option *ngFor="let cat of setupCategories" value="{{cat.id}}">{{cat.title}}</option>
+                  <option *ngFor="let cat of setupCategories" value="{{cat._id}}">{{cat.title}}</option>
                 </select>
                 <div *ngIf="form.submitted && category.invalid" class="text-danger">
                   <div *ngIf="category.errors.required">Category is required</div>

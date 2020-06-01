@@ -6,7 +6,6 @@ import {AppRouteModule} from './app.route';
 import {HomeComponent} from './views/home/home.component';
 import {UserComponent} from './views/user/user.component';
 import {HttpClientModule} from '@angular/common/http';
-import { AttendanceComponent } from './views/attendance/attendance.component';
 import {NgBusyModule} from 'ng-busy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserRegisterComponent} from './views/user/register/user-register.component';
@@ -25,7 +24,6 @@ import {LoginComponent} from './views/auth/login/login.component';
     AppComponent,
     HomeComponent,
     UserComponent,
-    AttendanceComponent,
     UserRegisterComponent,
     FooterComponent,
     HeaderComponent,
