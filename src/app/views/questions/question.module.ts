@@ -12,6 +12,7 @@ import {CategoryComponent} from './setup/category/category.component';
 import {DataTablesModule} from 'angular-datatables';
 import {SetupService} from '../../services/setup.service';
 import {QuestionComponent} from './question.component';
+import { CreateModelTestComponent } from './create-model-test/create-model-test.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {QuestionComponent} from './question.component';
     SetupComponent,
     SubjectComponent,
     ChapterComponent,
-    CategoryComponent
+    CategoryComponent,
+    CreateModelTestComponent
   ],
   providers: [SetupService]
 })

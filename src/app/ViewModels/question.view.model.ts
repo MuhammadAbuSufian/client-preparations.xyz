@@ -1,8 +1,8 @@
-import {QuestionSetupViewModel} from './question-setup.view.model';
+
 import {OptionViewModel} from './option.view.model';
 
 export class QuestionViewModel {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   subjectId: string;
