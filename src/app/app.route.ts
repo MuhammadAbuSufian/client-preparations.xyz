@@ -45,6 +45,13 @@ export const routes: Routes = [
       title: 'Preparation'
     },
     loadChildren: () => import('./views/preparation/preparation.module').then(m => m.PreparationModule)
+  },
+  {
+    path: ':category',
+    data: {
+      title: 'Category'
+    },
+    loadChildren: () => import('./views/preparation/preparation.module').then(m => m.PreparationModule)
   }
 ]
 

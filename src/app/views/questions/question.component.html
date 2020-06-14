@@ -1,51 +1,55 @@
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Model Test</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Question Bank</a>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-    Model Test content here.
-  </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <div class="row" style="margin-top: -18px;">
-      <div class="col-md-12">
-        <br>
-        <br><br>
-        <p>
-          <span class="cat-label">{{category | uppercase }}</span>
-          <span class="cat-label">{{subjectName | uppercase }}</span>
-          <span class="cat-label">{{chapterName | uppercase }}</span>
-        </p>
+<div class="row">
+  <div class="col-md-12">
+    <nav style="margin-top: -25px">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Model Test</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Question Bank</a>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <div class="btn-group btn-group-sm ">
-          <button *ngFor="let sub of subjects" type="button" class="btn btn-info" (click)="changeSubject(category, sub.id)">{{sub.title}}</button>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        Model Test content here.
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="row" style="margin-top: -18px;">
+          <div class="col-md-12">
+            <br><br>
+            <p>
+              <span class="cat-label">{{category | uppercase }}</span>
+              <span class="cat-label">{{subjectName | uppercase }}</span>
+              <span class="cat-label">{{chapterName | uppercase }}</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-2">
-        <select class="form-control" style="height: 30px; padding: 0px 0px 2px 7px" (change)="getQuestions(category, subject)" [(ngModel)]="chapter" >
-          <option value="default">All Chapter</option>
-          <option *ngFor="let cpt of chapters" value="{{cpt.id}}">{{cpt.title}}</option>
-        </select>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="btn-group btn-group-sm ">
+              <button *ngFor="let sub of subjects" type="button" class="btn btn-info" (click)="changeSubject(category, sub.id)">{{sub.title}}</button>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <select class="form-control" style="height: 30px; padding: 0px 0px 2px 7px" (change)="getQuestions(category, subject)" [(ngModel)]="chapter" >
+              <option value="default">All Chapter</option>
+              <option *ngFor="let cpt of chapters" value="{{cpt.id}}">{{cpt.title}}</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="row" style="padding-left: 15px">
+          <div class="col-md-4" *ngFor="let question of questions; let i = index" >
+            <h6 class="option-title">{{i+1}}. {{question.title}}</h6>
+            <p class="option-text" *ngFor="let option of question.options; let i = index" > <input type="checkbox" disabled [checked]="option.answer"> a) {{option.title}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="text-align: center; margin-bottom: 20px;margin-top: 10px" *ngIf="questions.length>20">
+            <button class="btn btn-sceondary" (click)="loadMore()">more questions</button>
+          </div>
+        </div>
+
       </div>
     </div>
-    <br>
-    <div class="row" style="padding-left: 15px">
-      <div class="col-md-4" *ngFor="let question of questions; let i = index" >
-        <h6 class="option-title">{{i+1}}. {{question.title}}</h6>
-        <p class="option-text" *ngFor="let option of question.options; let i = index" > <input type="checkbox" disabled [checked]="option.answer"> a) {{option.title}}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="text-align: center; margin-bottom: 20px;margin-top: 10px" *ngIf="questions.length>20">
-        <button class="btn btn-sceondary" (click)="loadMore()">more questions</button>
-      </div>
-    </div>
+
 
   </div>
 </div>
-

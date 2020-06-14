@@ -3,7 +3,7 @@ import {PreparationComponent} from './preparation.component';
 
 export const preparationRoute: Routes = [
   {
-    path: 'questionBank',
+    path: '',
     component: PreparationComponent,
     data: {
       title: 'Preparation'

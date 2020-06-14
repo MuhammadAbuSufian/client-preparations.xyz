@@ -10,7 +10,7 @@
         <ul class="navbar-nav mr-auto main-nav " style="margin-left: 15px;">
 
           <li class="nav-item float-right" *ngFor="let cat of categories">
-            <a class="nav-link" [routerLink]="['/question/mcq', cat.title]"  >{{cat.title}}</a>
+            <a class="nav-link" [routerLink]="['/', cat.title]"  >{{cat.title}}</a>
           </li>
 <!--          <li class="nav-item dropdown float-right"  [routerLinkActive]="'active'">-->
 <!--            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
