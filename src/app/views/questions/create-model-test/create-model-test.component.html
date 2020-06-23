@@ -1,0 +1,55 @@
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-category" role="tab" aria-controls="pills-home" aria-selected="true">Select Questions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-subject" role="tab" aria-controls="pills-profile" aria-selected="false">Add Questions</a>
+  </li>
+</ul>
+
+<br>
+<br>
+<div class="row ">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <form>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <label  class=" col-form-label">Model Test Name </label>
+              <input [(ngModel)]="modelTest.name" type="text" class="form-control" name="modelTestNeme" >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row" style="padding-left: 15px">
+      <div class="col-md-6" *ngFor="let question of modelTest.questions; let i = index" >
+        <h6 class="option-title">{{i+1}}. {{question.title}}</h6>
+        <p class="option-text" *ngFor="let option of question.options; let i = index" > <input type="checkbox" disabled [checked]="option.answer"> a) {{option.title}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <br>
+        <br>
+        <button class="btn btn-success" (click)="createModelTest()">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" style="min-height: 500px;    border-left: 1px solid #d0e2e0">
+      <div class="row">
+        <div class="col-md-12">
+            <input (keyup.enter)="SearchKey()" class="form-control" placeholder="Search .." [(ngModel)]="searchKey">
+        </div>
+      </div>
+    <div class="row" style="padding-left: 15px">
+      <div class="col-md-6" *ngFor="let ques of questions; let i = index" >
+        <h6 (click)="selectQuestion(i)" class="option-title">{{i+1}}. {{ques.title}}</h6>
+        <p class="option-text" *ngFor="let option of ques.options; let i = index" > <input type="checkbox" disabled [checked]="option.answer"> a) {{option.title}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
