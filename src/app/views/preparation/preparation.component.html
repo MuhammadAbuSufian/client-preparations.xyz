@@ -8,8 +8,10 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let test of modeltests">{{test.name}}</li>
+        <ul class="list-group list-group-flush" style="margin-top: 15px">
+          <li class="list-group-item" *ngFor="let test of modeltests">
+            <a class=" btn-link" [routerLink]="'/model-test/'+test.name">{{test.name}}</a>
+          </li>
         </ul>
       </div>
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -26,13 +28,13 @@
         <div class="row">
           <div class="col-md-10">
             <div class="btn-group btn-group-sm ">
-              <button *ngFor="let sub of subjects" type="button" class="btn btn-info" (click)="changeSubject(category, sub.id)">{{sub.title}}</button>
+              <button *ngFor="let sub of subjects" type="button" class="btn btn-info" (click)="changeSubject(category, sub._id)">{{sub.title}}</button>
             </div>
           </div>
           <div class="col-md-2">
             <select class="form-control" style="height: 30px; padding: 0px 0px 2px 7px" (change)="getQuestions(category, subject)" [(ngModel)]="chapter" >
               <option value="default">All Chapter</option>
-              <option *ngFor="let cpt of chapters" value="{{cpt.id}}">{{cpt.title}}</option>
+              <option *ngFor="let cpt of chapters" value="{{cpt._id}}">{{cpt.title}}</option>
             </select>
           </div>
         </div>
@@ -40,7 +42,7 @@
         <div class="row" style="padding-left: 15px">
           <div class="col-md-4" *ngFor="let question of questions; let i = index" >
             <h6 class="option-title">{{i+1}}. {{question.title}}</h6>
-            <p class="option-text" *ngFor="let option of question.options; let i = index" > <input type="checkbox" disabled [checked]="option.answer"> a) {{option.title}}</p>
+            <p class="option-text" *ngFor="let option of question.options; let i = index" > <input type="checkbox" disabled [checked]="option.answer"> {{questionOptionEnum[i]}}) {{option.title}}</p>
           </div>
         </div>
         <div class="row">

@@ -22,4 +22,8 @@ export class ModelTestService {
   getModelTest(category) {
     return this.httpClient.get(environment.url.serverBase + 'modelTest/' + category);
   }
+
+  getModelTestByName(name) {
+    return this.httpClient.get(environment.url.serverBase + 'modelTest/byname/' + name);
+  }
 }

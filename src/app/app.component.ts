@@ -28,25 +28,26 @@ export class AppComponent  implements OnInit {
     //   }
     // );
 
-    // this.router.events.pipe(
-    //   filter(event => event instanceof ResolveStart),
-    //   map(event => {
-    //     let data = null;
-    //     let route = event['state'].root;
-    //
-    //     while (route) {
-    //       data = route.data || data;
-    //       route = route.firstChild;
-    //     }
-    //
-    //     return data;
-    //   }),
-    // ).subscribe(
-    //   data => {
-    //     console.log('testing================>' + data);
-    //
-    //     this.title = data.title;
-    //   }
-    // );
+    this.router.events.pipe(
+      filter(event => event instanceof ResolveStart),
+      map(event => {
+        let data = null;
+        let route = event['state'].root;
+
+        while (route) {
+          data = route.data || data;
+          route = route.firstChild;
+        }
+
+        return data;
+      }),
+    ).subscribe(
+      data => {
+        console.log('testing================>' + data);
+
+        this.commonData.title = data.title;
+      }
+    );
+
   }
 }

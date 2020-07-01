@@ -7,16 +7,18 @@ import {QuestionService} from '../../services/question.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {CommonDataService} from '../../services/common-data.service';
 import {ModelTestService} from '../../services/model-test.service';
+import {QuestionOptionEnum} from '../../enums/question-option.enum';
 
 @Component({
   selector: 'app-preparation',
-  templateUrl: 'preparation.component.html'
+  templateUrl: 'preparation.component.html',
+  styleUrls: ['preparation.component.css']
 })
 export class PreparationComponent implements OnInit {
   setupService: SetupService;
-  subjects: QuestionSetupViewModel[];
-  chapters: QuestionSetupViewModel[];
-  questions: QuestionViewModel[];
+  subjects: QuestionSetupViewModel[] = [];
+  chapters: QuestionSetupViewModel[] = [];
+  questions: QuestionViewModel[] = [];
   questionService: QuestionService;
   page: number;
   category: string;
@@ -25,6 +27,7 @@ export class PreparationComponent implements OnInit {
   subjectName: string;
   chapterName: string;
   modeltests = [];
+  questionOptionEnum = QuestionOptionEnum;
   constructor(setupService: SetupService,
               questionService: QuestionService,
               private  route: ActivatedRoute,
