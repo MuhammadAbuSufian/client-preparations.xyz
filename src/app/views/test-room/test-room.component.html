@@ -1,0 +1,17 @@
+<div class="row" style="padding-left: 15px">
+  <div class="col-md-4" *ngFor="let question of testQuestions; let i = index" >
+    <h6 class="option-title">{{i+1}}. {{question.title}}</h6>
+    <p class="option-text" *ngFor="let option of question.options; let j = index" >
+      <input type="checkbox" name="question_{{i}}" [(ngModel)]="option.answer"
+             id="question_{{i}}_option{{j}}" (change)="selectOption(i, j)">
+      <label for="question_{{i}}_option{{j}}" style="padding-left: 10px"> {{questionOptionEnum[j]}}) {{option.title}}</label>
+    </p>
+  </div>
+</div>
+<br>
+<br>
+<div class="row" *ngIf="testQuestions.length>0">
+  <div class="col-md-12 text-center">
+    <button (click)="calculateResult()" class="btn btn-success " style="padding-right: 50px;padding-left: 50px">Complete Test</button>
+  </div>
+</div>
